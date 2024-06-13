@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 from flask_cors import CORS
 import torch
 import random
@@ -49,6 +49,9 @@ def get_response(msg):
                 return random.choice(intent['responses'])
     
     return "I do not understand..."
+@app.route('/')
+def index():
+    return render_template('base.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
